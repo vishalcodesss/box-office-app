@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Home from "./Pages/Home";
 import Starred from "./Pages/Starred";
 import MainLayout from "./components/MainLayout";
+import Show from "./Pages/Show";
 
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
       <Route path="/" element={<Home/>} />
       <Route path="/starred" element={<Starred/>} />
       </Route>
+
+      <Route path="/show/:showId" element={<Show />} />
+      
       <Route path="*" element={ <div>NOT FOUND!!! 404</div>} />
 
       {/* <Route path="/" element={<App />}>
