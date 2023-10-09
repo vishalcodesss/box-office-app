@@ -1,4 +1,4 @@
-const Baseurl ='https://api.tvmaze.com/';
+const Baseurl ='https://api.tvmaze.com';
 
 const apiget = async (queryString) =>{
     const response = await fetch(`${Baseurl}${queryString}`);
@@ -14,3 +14,7 @@ export const searchforshows = (query) =>{
 export const searchforpeoples = (query) =>{
     return apiget(`/search/people?q=${query}`)
 }
+export const getShowbyId = showId => {
+    return apiget(`/shows/${showId}`);
+  };
+  
