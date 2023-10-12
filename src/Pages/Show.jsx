@@ -3,6 +3,8 @@ import { getShowbyId } from '../API/tvmaze';
 import { useQuery } from '@tanstack/react-query';
 import Showmaindata from '../components/shows/Showmaindata';
 import Details from '../components/shows/Details';
+import Seasons from '../components/shows/Seasons';
+import Cast from '../components/shows/Cast';
 
 const Show = () => {
   const { showId } = useParams();
@@ -10,6 +12,7 @@ const Show = () => {
   const { data: showdata, error: showerror } = useQuery({
     queryKey: ['show', showId],
     queryFn: () => getShowbyId(showId),
+    refetchOnWindowFocus: false,
   });
 
   if (showerror) {
@@ -35,6 +38,18 @@ const Show = () => {
             premiered={showdata.premiered}
             network={showdata.network}
           />
+        </div>
+
+        <div>
+          <h2>Seasons</h2>
+          <Seasons seasons={showdata._embedded.seasons} />
+        </div>
+
+        <div>
+          <h2>Cast</h2>
+          <div>
+            <Cast cast={showdata._embedded.cast} />
+          </div>
         </div>
       </div>
     );
