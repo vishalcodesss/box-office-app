@@ -47,13 +47,11 @@ const Show = () => {
 
         <div>
           <h2>Cast</h2>
-          <div>
-            <Cast cast={showdata._embedded.cast} />
-          </div>
+            <Cast  cast={showdata._embedded.cast} />
         </div>
       </div>
     );
-  }
+  };
   return <div>Data is loading</div>;
 };
 
