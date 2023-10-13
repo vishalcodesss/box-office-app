@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getShowbyId } from '../API/tvmaze';
 import { useQuery } from '@tanstack/react-query';
 import Showmaindata from '../components/shows/Showmaindata';
