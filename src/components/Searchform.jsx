@@ -1,46 +1,50 @@
-import { useState } from "react";
-import { useSearchStr } from "../library/useSearchStr";
+import { useState } from 'react';
+import { useSearchStr } from '../library/useSearchStr';
+import Customradio from './Customradio';
 
-const Searchform = ({onsearch}) =>{
-    const [searchStr, setSearchStr] = useSearchStr();
-    const [searchoption, setsearchoption] = useState("shows")
+const Searchform = ({ onsearch }) => {
+  const [searchStr, setSearchStr] = useSearchStr();
+  const [searchoption, setsearchoption] = useState('shows');
 
- 
-    const onSearchInputchange = ev => {
-        setSearchStr(ev.target.value);
-      };
-      const onradiochange = ev =>{
-        setsearchoption(ev.target.value)
-      };
-      const onSubmit = (ev) =>{
-        ev.preventDefault();
+  const onSearchInputchange = ev => {
+    setSearchStr(ev.target.value);
+  };
+  const onradiochange = ev => {
+    setsearchoption(ev.target.value);
+  };
+  const onSubmit = ev => {
+    ev.preventDefault();
 
-        const options = {
-            q: searchStr,
-            searchoption
-        }
-        onsearch(options);
-      }
+    const options = {
+      q: searchStr,
+      searchoption,
+    };
+    onsearch(options);
+  };
 
-    return(
+  return (
     <form onSubmit={onSubmit}>
-        <input type="text" value={searchStr} onChange={onSearchInputchange} />
+      <input type="text" value={searchStr} onChange={onSearchInputchange} />
 
-        <label>
-            <input type="radio" name='search-option' value='shows' checked={searchoption === 'shows'}
-             onChange={onradiochange}/>
-            Shows
-        </label>
+      <Customradio
+        label="Shows"
+        name="search-option"
+        value="shows"
+        checked={searchoption === 'shows'}
+        onChange={onradiochange}
+      />
 
-        <label>
-            <input type="radio" name='search-option' value='actors' checked={searchoption === 'actors'}
-             onChange={onradiochange}/>
-            Actors
-        </label>
+      <Customradio
+        label="Actors"
+        name="search-option"
+        value="actors"
+        checked={searchoption === 'actors'}
+        onChange={onradiochange}
+      />
 
-        <button type="submit">Search</button>
-      </form>
-    ) 
+      <button type="submit">Search</button>
+    </form>
+  );
 };
 
 export default Searchform;
