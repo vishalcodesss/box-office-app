@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Seasons = ({ seasons }) => {
   return (
-    <div>
+    <SeasonsWrapper>
       <p>
       Seasons in total: {seasons.length}
       </p>
@@ -11,19 +11,22 @@ const Seasons = ({ seasons }) => {
         Episodes in total: {seasons.reduce((sum, season) => sum + season.episodeOrder,0)}
       </p>
 
-      <div>
+      <SeasonList>
         {seasons.map(season => (
-            <div key={season.id}>
+            <div key={season.id} className="season-item">
+              <div className="left">
                 <p>Season {season.number}</p>
                 <p>Episodes: {season.episodeOrder}</p>
+              </div>
 
-                <div>
-                    Aired: {season.premiereDate} to {season.endDate}
+
+                <div className="right">
+                    Aired: <strong>{season.premiereDate} to {season.endDate}</strong>
                 </div>
             </div>
         ))}
-      </div>
-    </div>
+      </SeasonList>
+    </SeasonsWrapper>
   );
 };
 

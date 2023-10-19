@@ -1,27 +1,30 @@
 import styled from "styled-components";
+import { SearchCard, SearchImgWrapper } from "../common/SearchCard";
+import { StarIcon } from "../common/StarIcon";
 
 const Showcard = ({ name, image, id, summary,onStarMeClick, isstarred }) => {
   const summarystripped = summary
-    ? summary.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '')
+    ? summary.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '') + '...'
     : 'No description';
 
   return (
-    <div>
-      <div>
+    <SearchCard>
+      <SearchImgWrapper>
         <img src={image} alt={name} />
-      </div>
+      </SearchImgWrapper>
 
       <h1>{name}</h1>
 
       <p>{summarystripped}</p>
 
-      <div>
+      <ActionSection>
         <a href={`/show/${id}`} target="_blank" rel="noreferrer">Read more</a>
-        <button type="button" onClick={()=> onStarMeClick(id)}>
-          {isstarred ? 'Unstar me' : 'Star me'}
-        </button>
-      </div>
-    </div>
+        <StarBtn type="button" onClick={()=> onStarMeClick(id)}>
+          <StarIcon  active={isstarred}/>
+          {/* {isstarred ? 'Unstar me' : 'Star me'} */}
+        </StarBtn>
+      </ActionSection>
+    </SearchCard>
   );
 };
 

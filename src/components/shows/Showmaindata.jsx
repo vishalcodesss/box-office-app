@@ -1,25 +1,37 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { StarIcon } from '../common/StarIcon';
 
-const Showmaindata = ({image, name, rating, summary, genres}) => {
+const Showmaindata = ({ image, name, rating, summary, genres }) => {
   return (
-    <div>
-      <img src={image ? image.original : '/image-not-found.png'} alt={name} />
-
-      <div>
-        <h1>{name}</h1>
-        <div>{rating.average || 'N/A'}</div>
-
-        <div dangerouslySetInnerHTML={{__html: summary}}/>
-        <div>
-            Genre : 
-            <div>
-                {genres.map((genre) =>(
-                    <span key={genre}>{genre}</span>
-                ))}
-            </div>
-        </div>
+    <MainDataWrapper>
+      <div className="img-wrap">
+        <img src={image ? image.original : '/image-not-found.png'} alt={name} />
       </div>
-    </div>
+
+      <DataSection>
+        <Headline>
+          <h1>{name}</h1>
+          <div>
+            <StarIcon active />
+
+
+
+
+          <span>{rating.average || 'N/A'}</span>
+          </div>
+        </Headline>
+
+        <Summary dangerouslySetInnerHTML={{ __html: summary }} />
+        <div>
+          Genre :
+          <Genres>
+            {genres.map(genre => (
+              <span key={genre}>{genre}</span>
+            ))}
+          </Genres>
+        </div>
+      </DataSection>
+    </MainDataWrapper>
   );
 };
 
@@ -87,8 +99,8 @@ const Genres = styled.div`
   span {
     margin: 6px;
     margin-bottom: 0;
-    color: blue;
-    background-color: #d0c9ff;
+    color: #020202;
+    background-color: #cec0c0;
     padding: 3px 13px;
     border-radius: 20px;
     font-size: 14px;

@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from 'styled-components';
 import {GlobalTheme} from './theme';
 import Home from './Pages/Home';
 import Starred from './Pages/Starred';
