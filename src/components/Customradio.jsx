@@ -23,7 +23,7 @@ const StyledRadio = styled.label`
   line-height: 1.65;
   input {
     position: absolute;
-    opacity: 0;
+    opacity: 0; 
     cursor: pointer;
   }
   span {

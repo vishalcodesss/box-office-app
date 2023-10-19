@@ -4,7 +4,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 const theme = {
     fontFamily: 'Roboto, sans-serif',
     mainColors: {
-      blue: '#2400ff',
+      blue: '#bd0707',
       gray: '#c6c6c6',
       dark: '#353535',
     },
