@@ -4,13 +4,15 @@ const Cast = ({ cast }) => {
   return (
     <CastList>
       {cast.map(({ person, character, voice }) => (
-        <div key={person.id}>
-          <div>
+        <div key={person.id} className="cast-item">
+          <div className="pic-wrapper">
             <img
               src={person.image ? person.image.medium : '/image-not-found.png'}
             />
           </div>
-          <div>
+
+
+          <div className="actor">
             {person.name} as {character.name} {voice && ' (Voiceover)'}
           </div>
         </div>
