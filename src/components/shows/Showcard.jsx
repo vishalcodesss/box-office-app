@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { SearchCard, SearchImgWrapper } from '../common/SearchCard';
 import { StarIcon } from '../common/StarIcon';
 
@@ -36,9 +37,10 @@ const Showcard = ({ name, image, id, summary, onStarMeClick, isstarred }) => {
       <p>{summarystripped}</p>
 
       <ActionSection>
-        <a href={`/show/${id}`} target="_blank" rel="noreferrer">
+        <Link to={`box-office-app/show/${id}`} target="_blank" rel="noreferrer">
           Read more
-        </a>
+        </Link>
+
         <StarBtn
           ref={starBtnRef}
           type="button"
