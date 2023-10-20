@@ -37,7 +37,7 @@ const Showcard = ({ name, image, id, summary, onStarMeClick, isstarred }) => {
       <p>{summarystripped}</p>
 
       <ActionSection>
-        <Link to={`box-office-app/show/${id}`} target="_blank" rel="noreferrer">
+        <Link to={`/show/${id}`} target="_blank" rel="noreferrer">
           Read more
         </Link>
 
