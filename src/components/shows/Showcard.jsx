@@ -1,11 +1,29 @@
-import styled from "styled-components";
-import { SearchCard, SearchImgWrapper } from "../common/SearchCard";
-import { StarIcon } from "../common/StarIcon";
+import styled from 'styled-components';
+import { useRef } from 'react';
+import { SearchCard, SearchImgWrapper } from '../common/SearchCard';
+import { StarIcon } from '../common/StarIcon';
 
-const Showcard = ({ name, image, id, summary,onStarMeClick, isstarred }) => {
+const Showcard = ({ name, image, id, summary, onStarMeClick, isstarred }) => {
   const summarystripped = summary
     ? summary.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '') + '...'
     : 'No description';
+
+    const starBtnRef = useRef()
+
+    const handleStarclick = () =>{
+      onStarMeClick(id);
+
+      const starBtnEl = starBtnRef.current;
+
+      if(!starBtnEl) return;
+
+      if(isstarred){
+        starBtnEl.classList.remove('animate');
+      }else{
+        starBtnEl.classList.add('animate');
+
+      }
+    }
 
   return (
     <SearchCard>
@@ -18,9 +36,16 @@ const Showcard = ({ name, image, id, summary,onStarMeClick, isstarred }) => {
       <p>{summarystripped}</p>
 
       <ActionSection>
-        <a href={`/show/${id}`} target="_blank" rel="noreferrer">Read more</a>
-        <StarBtn type="button" onClick={()=> onStarMeClick(id)}>
-          <StarIcon  active={isstarred}/>
+        <a href={`/show/${id}`} target="_blank" rel="noreferrer">
+          Read more
+        </a>
+        <StarBtn
+          ref={starBtnRef}
+          type="button"
+          onClick={handleStarclick}
+          // className={isstarred && 'animate'}
+        >
+          <StarIcon active={isstarred} />
           {/* {isstarred ? 'Unstar me' : 'Star me'} */}
         </StarBtn>
       </ActionSection>
@@ -56,5 +81,21 @@ const StarBtn = styled.button`
   align-items: center;
   &:hover {
     cursor: pointer;
+  }
+  &.animate {
+    ${StarIcon} {
+      animation: increase 0.75s ease-in forwards;
+      @keyframes increase {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(3) rotate(45deg);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    }
   }
 `;
